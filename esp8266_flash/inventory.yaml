@@ -1,0 +1,8 @@
+cache:
+    builder-api:
+        v3/boards/byvid/pid/0x1a86/0x7523:
+            data: "null"
+            ts: 2024-10-16T22:37:32.1326372+05:30
+installation:
+    id: 77261d74-3431-4e0d-a69b-07f42f05d542
+    secret: e3742898-bf1d-49d8-950e-892fd81e7a21

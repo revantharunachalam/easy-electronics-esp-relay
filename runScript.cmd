@@ -1,0 +1,1 @@
+python source\relayCmd.py --relay 2 --state OFF
