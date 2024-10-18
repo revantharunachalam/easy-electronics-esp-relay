@@ -1,8 +1,8 @@
 @REM Initialize configuration file
 arduino-cli config init --overwrite --dest-file esp8266_flash-cli.yaml
 
-@REM Creating new sketch (.ini file)
-arduino-cli sketch new .
+@REM Creating new sketch (.ini file) - Not needed for CI/CD
+@REM arduino-cli sketch new .
 
 @REM Display the list of boards
 arduino-cli board list --config-file esp8266_flash-cli.yaml
