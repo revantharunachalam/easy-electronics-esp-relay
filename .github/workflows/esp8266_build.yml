@@ -56,6 +56,7 @@ jobs:
           cd esp8266_flash
           echo "Changing directory to esp8266_flash"
           arduino-cli config init --overwrite --dest-file esp8266_flash-cli.yaml
+          arduino-cli core update-index --config-file esp8266_flash-cli.yaml
           arduino-cli core search esp8266 --config-file esp8266_flash-cli.yaml
  
       # We then install the platform, which one will be determined
