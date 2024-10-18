@@ -52,8 +52,8 @@ jobs:
       # Create configuration file
       - name: Initialize configuration file and find esp8266
         run: |
-          cd $(pwd)\es8266_flash
-          echo "Changing directory to $(pwd)\es8266_flash"
+          cd %CD%\esp8266_flash
+          echo "Changing directory to %CD%\esp8266_flash"
           arduino-cli config init --overwrite --dest-file esp8266_flash-cli.yaml
           arduino-cli sketch new .
           arduino-cli board list --config-file esp8266_flash-cli.yaml
@@ -63,8 +63,8 @@ jobs:
       # dynamically by the build matrix.
       - name: Install platform
         run: |
-          cd $(pwd)\es8266_flash
-          echo "Changing directory to $(pwd)\es8266_flash"
+          cd %CD%\esp8266_flash
+          echo "Changing directory to %CD%\esp8266_flash"
           arduino-cli board listall --config-file esp8266_flash-cli.yaml
           arduino-cli core install ${{ matrix.arduino-platform }}
  
@@ -72,8 +72,8 @@ jobs:
       # in the build matrix.
       - name: Compile Sketch
         run: |
-          cd $(pwd)\es8266_flash
-          echo "Changing directory to $(pwd)\es8266_flash"
+          cd %CD%\esp8266_flash
+          echo "Changing directory to %CD%\esp8266_flash"
           del /q 1_build
           mkdir 1_build
           arduino-cli compile --fqbn esp8266:esp8266:nodemcu . --config-file esp8266_flash-cli.yaml --output-dir 1_build
