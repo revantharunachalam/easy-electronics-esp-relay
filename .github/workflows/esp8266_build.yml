@@ -11,7 +11,7 @@ on: [push, pull_request]
 # will produce.
 jobs:
   # This is the name of the job - can be whatever.
-  test-matrix:
+  build:
  
     # Here we tell GitHub that the jobs must be determined
     # dynamically depending on a matrix configuration.
@@ -52,9 +52,8 @@ jobs:
       # Create configuration file
       - name: Initialize configuration file and find esp8266
         run: |
-          echo "Current directory: %CD%"
           cd esp8266_flash
-          echo "Changing directory to esp8266_flash"
+          echo "Changing directory to esp8266_flash\ directory"
           arduino-cli config init --overwrite --dest-file esp8266_flash-cli.yaml
           arduino-cli config add board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json
           arduino-cli core update-index --config-file esp8266_flash-cli.yaml
@@ -64,9 +63,8 @@ jobs:
       # dynamically by the build matrix.
       - name: Install platform
         run: |
-          echo "Current directory: %CD%"
           cd esp8266_flash
-          echo "Changing directory to esp8266_flash"
+          echo "Changing directory to esp8266_flash\ directory"
           arduino-cli board listall --config-file esp8266_flash-cli.yaml
           arduino-cli core install ${{ matrix.arduino-platform }}
  
@@ -74,9 +72,28 @@ jobs:
       # in the build matrix.
       - name: Compile Sketch
         run: |
-          echo "Current directory: %CD%"
           cd esp8266_flash
-          echo "Changing directory to esp8266_flash"
+          echo "Changing directory to esp8266_flash\ directory"
           Remove-Item -Path "1_build" -Recurse -Force
           New-Item -Path "1_build" -ItemType Directory
           arduino-cli compile --fqbn esp8266:esp8266:nodemcu . --config-file esp8266_flash-cli.yaml --output-dir 1_build
+
+  test:
+    # This is the platform GitHub will use to run our workflow, we
+    # pick Windows for no particular reason.
+    runs-on: windows-latest
+
+    # This is the list of steps this job will run.
+    steps:
+      # Installing all python libraries required
+      - name: Install python libraries
+        run: pip install -r requirements.txt
+
+      # Run unittest on Pyserial wrapper
+      - name: Run unit test on Pyserial wrapper
+        run: |
+          cd test
+          echo "Changing directory to test\ directory"
+          python test.py
+          
+

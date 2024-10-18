@@ -1,1 +1,6 @@
 esp8266_flash\1_build\*
+Include
+Lib
+Scripts
+pyvenv.cfg
+*__pycache__*

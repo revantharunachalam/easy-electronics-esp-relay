@@ -24,7 +24,10 @@ class RelaySerial:
         """
         Delete the pyserial object
         """
-        self.serial.close()
+        try:
+            self.serial.close()
+        except AttributeError:
+            print("Serial connection is not opened. So, not able to close the connection.")
 
 def read_command_line_arg():
     """
