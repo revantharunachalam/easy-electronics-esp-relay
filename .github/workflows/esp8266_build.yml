@@ -77,6 +77,6 @@ jobs:
           echo "Current directory: %CD%"
           cd esp8266_flash
           echo "Changing directory to esp8266_flash"
-          del /q 1_build
+          rmdir /s /q 1_build
           mkdir 1_build
           arduino-cli compile --fqbn esp8266:esp8266:nodemcu . --config-file esp8266_flash-cli.yaml --output-dir 1_build
