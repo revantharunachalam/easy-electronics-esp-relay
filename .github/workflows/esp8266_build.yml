@@ -90,10 +90,7 @@ jobs:
         run: |
           $currentDir = Get-Location
           Write-Output "Current directory: $($currentDir.Path)"
-          $dirContents = Get-ChildItem
-          Write-Output "Contents in $($currentDir.Path):"
-          $dirContents
-          python -m pip install -r requirements.txt
+          python -m pip install pyserial==3.5
 
       # Run unittest on Pyserial wrapper
       - name: Run unit test on Pyserial wrapper
