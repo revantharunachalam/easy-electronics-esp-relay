@@ -87,7 +87,13 @@ jobs:
     steps:
       # Installing all python libraries required
       - name: Install python libraries
-        run: pip install -r requirements.txt
+        run: |
+          $currentDir = Get-Location
+          Write-Output "Current directory: $($currentDir.Path)"
+          $dirContents = Get-ChildItem
+          Write-Output "Contents in $($currentDir.Path):"
+          $dirContents
+          python -m pip install -r requirements.txt
 
       # Run unittest on Pyserial wrapper
       - name: Run unit test on Pyserial wrapper
