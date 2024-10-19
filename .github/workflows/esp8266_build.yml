@@ -98,6 +98,6 @@ jobs:
         run: |
           cd test
           echo "Changing directory to test\ directory"
-          python test.py
+          python unittest.py
           
 
