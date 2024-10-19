@@ -85,16 +85,19 @@ jobs:
 
     # This is the list of steps this job will run.
     steps:
+      # First of all, we clone the repo using the checkout action.
+      - name: Checkout
+        uses: actions/checkout@master
+
       # Installing all python libraries required
       - name: Install python libraries
-        run: |
-          $currentDir = Get-Location
-          Write-Output "Current directory: $($currentDir.Path)"
-          python -m pip install pyserial==3.5
+        run: python -m pip install -r requirements.txt
 
       # Run unittest on Pyserial wrapper
       - name: Run unit test on Pyserial wrapper
         run: |
-          python test\test.py
+          cd test
+          echo "Changing directory to test\ directory"
+          python test.py
           
 
