@@ -95,8 +95,6 @@ jobs:
       # Run unittest on Pyserial wrapper
       - name: Run unit test on Pyserial wrapper
         run: |
-          cd test
-          echo "Changing directory to test\ directory"
-          python test.py
+          python test\test.py
           
 
